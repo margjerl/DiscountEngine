@@ -87,4 +87,73 @@ public class DiscountCalculatorTests
         // Best discount: 10
         Assert.Equal(10m, discount);
     }
+
+    [Fact]
+    public void CalculateDiscount_WhenAmountIsExactly1000_ReturnsNoDiscount()
+    {
+        // Arrange
+        var calculator = new DiscountCalculator();
+        var order = new Order();
+        order.Lines.Add(new OrderLine { ProductCode = "A", Quantity = 1, UnitPrice = 1000 });
+
+        // Act
+        var discount = calculator.CalculateDiscount(order);
+
+        // Assert
+        // Total amount: 1000 (not > 1000, so no amount discount)
+        // Total quantity: 1 (not > 5, so no quantity discount)
+        Assert.Equal(0m, discount);
+    }
+
+    [Fact]
+    public void CalculateDiscount_WhenQuantityIsExactly5_ReturnsNoDiscount()
+    {
+        // Arrange
+        var calculator = new DiscountCalculator();
+        var order = new Order();
+        order.Lines.Add(new OrderLine { ProductCode = "A", Quantity = 5, UnitPrice = 100 });
+
+        // Act
+        var discount = calculator.CalculateDiscount(order);
+
+        // Assert
+        // Total amount: 500 (not > 1000, so no amount discount)
+        // Total quantity: 5 (not > 5, so no quantity discount)
+        Assert.Equal(0m, discount);
+    }
+
+    [Fact]
+    public void CalculateDiscount_WithMultipleOrderLines_CalculatesTotalCorrectly()
+    {
+        // Arrange
+        var calculator = new DiscountCalculator();
+        var order = new Order();
+        order.Lines.Add(new OrderLine { ProductCode = "A", Quantity = 3, UnitPrice = 200 });
+        order.Lines.Add(new OrderLine { ProductCode = "B", Quantity = 4, UnitPrice = 150 });
+
+        // Act
+        var discount = calculator.CalculateDiscount(order);
+
+        // Assert
+        // Total amount: 600 + 600 = 1200
+        // Total quantity: 3 + 4 = 7
+        // 10% discount: 120 (amount > 1000)
+        // 5% discount: 60 (quantity > 5)
+        // Best discount: 120
+        Assert.Equal(120m, discount);
+    }
+
+    [Fact]
+    public void CalculateDiscount_WithEmptyOrder_ReturnsNoDiscount()
+    {
+        // Arrange
+        var calculator = new DiscountCalculator();
+        var order = new Order();
+
+        // Act
+        var discount = calculator.CalculateDiscount(order);
+
+        // Assert
+        Assert.Equal(0m, discount);
+    }
 }
