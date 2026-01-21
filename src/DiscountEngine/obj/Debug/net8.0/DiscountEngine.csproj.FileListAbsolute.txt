@@ -1,0 +1,12 @@
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/bin/Debug/net8.0/DiscountEngine.deps.json
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/bin/Debug/net8.0/DiscountEngine.dll
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/bin/Debug/net8.0/DiscountEngine.pdb
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/obj/Debug/net8.0/DiscountEngine.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/obj/Debug/net8.0/DiscountEngine.AssemblyInfoInputs.cache
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/obj/Debug/net8.0/DiscountEngine.AssemblyInfo.cs
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/obj/Debug/net8.0/DiscountEngine.csproj.CoreCompileInputs.cache
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/obj/Debug/net8.0/DiscountEngine.sourcelink.json
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/obj/Debug/net8.0/DiscountEngine.dll
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/obj/Debug/net8.0/refint/DiscountEngine.dll
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/obj/Debug/net8.0/DiscountEngine.pdb
+/home/runner/work/DiscountEngine/DiscountEngine/src/DiscountEngine/obj/Debug/net8.0/ref/DiscountEngine.dll
