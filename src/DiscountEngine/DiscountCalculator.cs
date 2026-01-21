@@ -25,6 +25,11 @@ public class DiscountCalculator
     /// </summary>
     public decimal CalculateDiscount(Order order)
     {
+        if (!_rules.Any())
+        {
+            return 0;
+        }
+
         return _rules.Max(rule => rule.CalculateDiscount(order));
     }
 }
