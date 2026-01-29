@@ -4,18 +4,30 @@ namespace DiscountEngine;
 
 public class DiscountCalculator
 {
+    private readonly IEnumerable<IDiscountRule> _rules;
+
+    public DiscountCalculator(IEnumerable<IDiscountRule> rules)
+    {
+        _rules = rules;
+    }
+
     /// <summary>
     /// Calculates discount for an order.
-    /// Current rules:
-    /// - 10 % discount if total amount is greater than 1000
+    /// Applies the discount rule that gives the highest discount.
     /// </summary>
     public decimal CalculateDiscount(Order order)
     {
-        if (order.TotalAmount > 1000)
+        decimal maxDiscount = 0;
+
+        foreach (var rule in _rules)
         {
-            return order.TotalAmount * 0.10m;
+            var discount = rule.CalculateDiscount(order);
+            if (discount > maxDiscount)
+            {
+                maxDiscount = discount;
+            }
         }
 
-        return 0;
+        return maxDiscount;
     }
 }
