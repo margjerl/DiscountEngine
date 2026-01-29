@@ -1,4 +1,5 @@
 using DiscountEngine.Models;
+using System;
 using System.Collections.Generic;
 using Xunit;
 
@@ -115,5 +116,57 @@ public class DiscountCalculatorTests
 
         // Assert
         Assert.Equal(0, discount);
+    }
+
+    [Fact]
+    public void Constructor_WithNullRules_ThrowsArgumentNullException()
+    {
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => new DiscountCalculator(null));
+    }
+
+    [Fact]
+    public void CalculateDiscount_WithNullOrder_ThrowsArgumentNullException()
+    {
+        // Arrange
+        var rules = new List<IDiscountRule>
+        {
+            new AmountThresholdDiscountRule(1000, 0.10m)
+        };
+        var calculator = new DiscountCalculator(rules);
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => calculator.CalculateDiscount(null));
+    }
+
+    [Fact]
+    public void AmountThresholdDiscountRule_WithNegativeThreshold_ThrowsArgumentOutOfRangeException()
+    {
+        // Act & Assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => new AmountThresholdDiscountRule(-100, 0.10m));
+    }
+
+    [Fact]
+    public void AmountThresholdDiscountRule_WithNegativeDiscountPercentage_ThrowsArgumentOutOfRangeException()
+    {
+        // Act & Assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => new AmountThresholdDiscountRule(1000, -0.10m));
+    }
+
+    [Fact]
+    public void AmountThresholdDiscountRule_WithDiscountPercentageGreaterThan1_ThrowsArgumentOutOfRangeException()
+    {
+        // Act & Assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => new AmountThresholdDiscountRule(1000, 1.5m));
+    }
+
+    [Fact]
+    public void AmountThresholdDiscountRule_CalculateDiscount_WithNullOrder_ThrowsArgumentNullException()
+    {
+        // Arrange
+        var rule = new AmountThresholdDiscountRule(1000, 0.10m);
+
+        // Act & Assert
+        Assert.Throws<ArgumentNullException>(() => rule.CalculateDiscount(null));
     }
 }
