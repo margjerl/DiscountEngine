@@ -12,7 +12,7 @@ public class DiscountCalculator
     /// <param name="discountRules">The collection of discount rules to evaluate.</param>
     public DiscountCalculator(IEnumerable<IDiscountRule> discountRules)
     {
-        _discountRules = discountRules;
+        _discountRules = discountRules ?? throw new ArgumentNullException(nameof(discountRules));
     }
 
     /// <summary>
