@@ -9,7 +9,7 @@ public class DiscountCalculator
     /// <summary>
     /// Initializes a new instance of the DiscountCalculator class.
     /// </summary>
-    /// <param name="discountRules">The collection of discount rules to evaluate.</param>
+    /// <param name="discountRules">The collection of discount rules to evaluate. An empty collection is valid and will result in no discounts.</param>
     public DiscountCalculator(IEnumerable<IDiscountRule> discountRules)
     {
         _discountRules = discountRules ?? throw new ArgumentNullException(nameof(discountRules));

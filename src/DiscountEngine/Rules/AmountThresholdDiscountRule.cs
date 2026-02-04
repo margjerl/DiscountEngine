@@ -28,6 +28,9 @@ public class AmountThresholdDiscountRule : IDiscountRule
 
     public decimal CalculateDiscount(Order order)
     {
+        if (order == null)
+            throw new ArgumentNullException(nameof(order));
+
         if (order.TotalAmount > _threshold)
         {
             return order.TotalAmount * _discountPercentage;
