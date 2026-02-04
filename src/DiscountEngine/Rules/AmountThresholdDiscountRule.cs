@@ -17,6 +17,11 @@ public class AmountThresholdDiscountRule : IDiscountRule
     /// <param name="discountPercentage">The discount percentage to apply (e.g., 0.10 for 10%).</param>
     public AmountThresholdDiscountRule(decimal threshold, decimal discountPercentage)
     {
+        if (threshold < 0)
+            throw new ArgumentOutOfRangeException(nameof(threshold), "Threshold must be non-negative.");
+        if (discountPercentage < 0 || discountPercentage > 1)
+            throw new ArgumentOutOfRangeException(nameof(discountPercentage), "Discount percentage must be between 0 and 1.");
+
         _threshold = threshold;
         _discountPercentage = discountPercentage;
     }

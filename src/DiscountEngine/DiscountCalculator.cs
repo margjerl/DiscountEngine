@@ -21,6 +21,9 @@ public class DiscountCalculator
     /// </summary>
     public decimal CalculateDiscount(Order order)
     {
+        if (order == null)
+            throw new ArgumentNullException(nameof(order));
+
         decimal maxDiscount = 0;
 
         foreach (var rule in _discountRules)
