@@ -28,6 +28,9 @@ public class DiscountCalculator
 
         foreach (var rule in _discountRules)
         {
+            if (rule == null)
+                continue;
+
             var discount = rule.CalculateDiscount(order);
             if (discount > maxDiscount)
             {
